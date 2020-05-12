@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="css/milligram.css">
+	</link>
+	<title>Device Profile</title>
+</h:head>
+<h:body onload="#{sessionController.redirectLoginUserProfile()}">
+	<h2 class="">OPENIoT</h2>
+
+	<h1 class="H1_us_prof">
+		<a href="UserProfile.xhtml"> Home Page </a> Device Profile
+	</h1>
+
+	<div class="profile_corner">
+		<div class="text_profile">
+			<h:form class="search_div">
+				<h:commandLink action="#{pagesController.from_ToSearch()}">
+					<img class="img_not" src="img/search.svg" alt="Search" />
+				</h:commandLink>
+			</h:form>
+		</div>
+	</div>
+	<div class="device_div">
+		<div class="device_name">
+			<img class="cloud_device_img" src="img/cloud-computing.svg"
+				alt="device_photo" />
+			<h3>#{iotdeviceController.dName}</h3>
+			<p class="description_dev">
+				#{iotdeviceController.serviceDesc}
+				<p class="star_dev_avg">
+					<img src="img/star-violet.jpeg" class="starti" />
+					<h:outputText value="#{iotdeviceController.globalRating}" />
+				</p>
+			</p>
+		</div>
+	</div>
+
+	<h:form>
+		<div class="div_rate">
+			<label class="rate_lab" for="rate1_10">Rate 1-10</label>
+			<h:inputText value="#{feedBackController.rating}" id="rate1_10"
+				class="rate_inp" type="text" maxlength="400"></h:inputText>
+		</div>
+		<div class="div_comm_dev" id="text_dev">
+			<label for="text_dev">Comment</label>
+			<h:inputText value="#{feedBackController.comment}" id="comment_in"
+				type="text" maxlength="400"></h:inputText>
+		</div>
+		<h:commandButton lass="butt_send_feed" value="Send feedback"
+			action="#{feedBackController.createFeedBack(iotdeviceController.iotdevice)}" />
+	</h:form>
+	<div class="div_comm_dev">
+		<h2>Comments</h2>
+		<ui:repeat
+			value="#{feedBackController.getFeedBackOfADevice(iotdeviceController.iotdevice)}"
+			var="fb">
+			<div class="div_comm_dev_ind">
+				<p class="comm_dev_usr_beg">
+					<h:outputText value="#{fb.rating}" />
+				</p>
+				<p>
+					<h:outputText value="#{fb.comment}" />
+				</p>
+			</div>
+		</ui:repeat>
+	</div>
+</h:body>
+</html>

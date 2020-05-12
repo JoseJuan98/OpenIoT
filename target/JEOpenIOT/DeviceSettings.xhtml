@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="css/milligram.css">
+	</link>
+	<title>Device Settings</title>
+</h:head>
+<h:body onload="#{sessionController.redirectLoginUserProfile()}">
+	<h2 class="">OPENIoT</h2>
+
+	<h1 class="H1_us_prof">
+		<a href="UserProfile.xhtml"> Home Page </a> Device Settings
+	</h1>
+
+	<h:form class="search_div">
+		<h:commandLink action="#{pagesController.from_ToSearch()}">
+			<img class="img_not" src="img/search.svg" alt="Search" />
+		</h:commandLink>
+	</h:form>
+	<br />
+	<br />
+	<br />
+	<h:form>
+		<h:commandLink class="logout_but"
+			action="#{sessionController.logout()}" value="Logout"></h:commandLink>
+	</h:form>
+
+	<div class="us_prof_div_sp">
+
+		<h:form class="Data">
+			<div class="sett_div">
+				<h:outputLabel> Name </h:outputLabel>
+				<h:inputText id="name_sett" required="true"
+					requieredMessage="Error: A name is required" maxlength="25"
+					value="#{iotdeviceController.dName}"></h:inputText>
+			</div>
+			<div class="sett_div">
+				<h:outputLabel> URL for service </h:outputLabel>
+				<h:inputText id="url_name_sett" required="true"
+					requieredMessage="Error: A name is required" maxlength="25"
+					value="#{iotdeviceController.URL}"></h:inputText>
+			</div>
+			<div class="sett_div">
+				<h:outputLabel> Description of service </h:outputLabel>
+				<h:inputText id="desc_name_sett" required="true"
+					requieredMessage="Error: A name is required" maxlength="25"
+					value="#{iotdeviceController.serviceDesc}"></h:inputText>
+			</div>
+			<div class="sett_div">
+				<h:outputLabel> Global rating </h:outputLabel>
+				<h:inputText id="gbrat_name_sett" required="true"
+					requieredMessage="Error: A name is required" maxlength="25"
+					value="#{iotdeviceController.globalRating}"></h:inputText>
+			</div>
+			<h:commandButton action="#{iotdeviceController.registerDevice}"
+				value="Register device">
+			</h:commandButton>
+		</h:form>
+
+		<a href="UserProfile.xhtml"> Cancel </a>
+	</div>
+
+</h:body>
+</html>
